@@ -49,6 +49,7 @@ func (api *API) postsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	s := mux.Vars(r)["n"]
 	n, _ := strconv.Atoi(s)
+
 	news, err := api.db.Posts(n)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

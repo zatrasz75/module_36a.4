@@ -3,7 +3,6 @@ package db
 import (
 	storage "GoNews/pkg/storage"
 	"context"
-
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
@@ -28,9 +27,6 @@ func New(ctx context.Context, constr string) (*Store, error) {
 // Posts выводит все существующие публикации
 func (s *Store) Posts(n int) ([]storage.Post, error) {
 
-	if n == 0 {
-		n = 10
-	}
 	rows, err := s.db.Query(context.Background(), `
 	SELECT id, title, content, published, link FROM news
 	ORDER BY published DESC
